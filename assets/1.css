@@ -1,0 +1,4 @@
+.up{ position:absolute; width:200px; height:200px; left:50px; top:200px} 
+.down{position:absolute; width:200px; height:200px; left:30px; bottom:17px} 
+.left{position:absolute; width:200px; height:200px; left:30px; bottom:67px} 
+.right{ position:absolute; width:200px; height:200px; left:30px; top:14px} 

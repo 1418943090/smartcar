@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html"  charset='utf-8'>
+<link rel="stylesheet" href="assets/jquery.mobile-1.4.5.min.css">
+<link href="assets/1.css" rel="stylesheet" type="text/css" /> 
+<script src="assets/jquery-2.1.4.min.js"></script>
+<style>
+.yu{ display:inline}
+</style>
+<script src="assets/jquery.mobile-1.4.5.min.js"></script>
+   <script type="text/javascript">
+        var s_x=3;
+        var z_y=5;
+        function S_X(i)
+        {
+         if(i==0)
+         {
+            var l=s_x-1;
+            if(l>=2)
+            {
+               s_x=s_x-1;
+                var data={val:s_x,direction:'S_X'};
+                $.ajax({
+                 url:'duoji_move',
+                data:data,
+                type:'post',
+            dataType:'json',
+              success:function(result)
+              {
+              }
+                });
+            }
+         }
+         if(i==1)
+         {
+          var l=s_x+1;
+            if(l<=7)
+            {
+               s_x=s_x+1;
+                var data={val:s_x,direction:'S_X'};
+                $.ajax({
+                 url:'duoji_move',
+                data:data,
+                type:'post',
+            dataType:'json',
+             success:function(result)
+              {
+              }
+                });
+            }
+         }
+       }
+       function Z_Y(i)
+       {
+        if(i==0)
+         {
+            var l=z_y-1;
+            if(l>=1)
+            {
+               z_y=z_y-1;
+               var data={val:z_y,direction:'Z_Y'};
+               $.ajax({
+               url:'duoji_move',
+              data:data,
+              type:'post',
+          dataType:'json',
+           success:function(result)
+               {
+               }
+                });
+            }
+         }
+         if(i==1)
+         {
+           var l=z_y+1;
+           if(l<=10)
+            {
+               z_y=z_y+1;
+                var data={val:z_y,direction:'Z_Y'};
+                $.ajax({
+                url:'duoji_move',
+               data:data,
+               type:'post',
+           dataType:'json',
+            success:function(result)
+              {
+              }
+                });
+            }
+         }
+       }
+       function show(mode)
+       {
+          if(mode=='photo')
+          {
+             $('#get_photo').show();
+             var NIMG=document.getElementById('img');
+             NIMG.src='http://1ue9156597.51mypc.cn:36458/?action=snapshot';
+          }
+          if(mode=='stream')
+          {
+             $('#get_photo').hide();
+             var NIMG=document.getElementById('img');
+             NIMG.src='http://1ue9156597.51mypc.cn:36458/?action=stream';
+          }
+       }
+       $(document).on("pageinit",function()
+        {
+            //alert(document.body.clientWidth);
+            // alert(document.body.clientHeight);
+             var Width=document.body.clientWidth;
+             $('#img').attr("width",Width);
+             //var btns=document.getElementsByTagName("button");
+            //for(var i=0;i<btns.length;i++)
+            // {
+               //  var id=btns[i].id;
+                // if(id!='get_photo')
+                // {
+                 //  $('#id').attr("width",Width*0.1393);
+                 //  $('#id').attr("height",Width*0.1393);
+                 //}
+             //}
+            UP();
+            DOWN();
+            LEFT();
+            RIGHT();
+        });
+       function UP()
+       {
+          var ling=1;
+          var c=document.getElementById('UP');
+          function run(event)
+          {
+             event = event || window.event;
+             event.preventDefault();
+             var speed=$('#speed').val();
+             var direction=1;
+             var data={speed:speed,direction:direction};
+           if(ling==1)
+           {
+              ling=0;
+              $.ajax({
+              url:'car_start',
+              data:data,
+             type:'post',
+              dataType:'json',
+              success:function(result)
+              {
+
+              }
+            });
+           }
+          }
+          function stop(event)
+          {
+            ling=1;
+            event = event || window.event
+            event.preventDefault()
+              var data={speed:0,direction:0};
+              $.ajax({
+              url:'car_start',
+              data:data,
+              type:'post',
+              dataType:'json',
+              success:function(result)
+              {
+
+              }
+            });
+          }
+          c.addEventListener('touchstart',run, false);
+           c.addEventListener('touchmove',run, false);
+           c.addEventListener('touchend',stop, false);
+       }
+   function DOWN()
+       {
+          var ling=1;
+          var c=document.getElementById('DOWN');
+          function run(event)
+          {
+             event = event || window.event;
+             event.preventDefault();
+             var speed=$('#speed').val();
+             var direction=2;
+             var data={speed:speed,direction:direction};
+           if(ling==1)
+           {
+              ling=0;
+              $.ajax({
+              url:'car_start',
+              data:data,
+             type:'post',
+              dataType:'json',
+              success:function(result)
+              {
+
+              }
+            });
+           }
+          }
+          function stop(event)
+          {
+            ling=1;
+            event = event || window.event
+            event.preventDefault()
+              var data={speed:0,direction:0};
+              $.ajax({
+              url:'car_start',
+              data:data,
+              type:'post',
+              dataType:'json',
+              success:function(result)
+              {
+
+              }
+            });
+          }
+          c.addEventListener('touchstart',run, false);
+           c.addEventListener('touchmove',run, false);
+           c.addEventListener('touchend',stop, false);
+       }
+        function LEFT()
+       {
+          var ling=1;
+          var c=document.getElementById('LEFT');
+          function run(event)
+          {
+             event = event || window.event;
+             event.preventDefault();
+             var speed=$('#speed').val();
+             var direction=3;
+             var data={speed:speed,direction:direction};
+           if(ling==1)
+           {
+              ling=0;
+              $.ajax({
+              url:'car_start',
+              data:data,
+             type:'post',
+              dataType:'json',
+              success:function(result)
+              {
+              }
+            });
+           }
+          }
+          function stop(event)
+          {
+            ling=1;
+            event = event || window.event
+            event.preventDefault()
+              var data={speed:0,direction:0};
+              $.ajax({
+              url:'car_start',
+              data:data,
+              type:'post',
+              dataType:'json',
+              success:function(result)
+              {
+              }
+            });
+          }
+          c.addEventListener('touchstart',run, false);
+           c.addEventListener('touchmove',run, false);
+           c.addEventListener('touchend',stop, false);
+       }
+        function RIGHT()
+       {
+          var ling=1;
+          var c=document.getElementById('RIGHT');
+          function run(event)
+          {
+             event = event || window.event;
+             event.preventDefault();
+             var speed=$('#speed').val();
+             var direction=4;
+             var data={speed:speed,direction:direction};
+           if(ling==1)
+           {
+              ling=0;
+              $.ajax({
+              url:'car_start',
+              data:data,
+             type:'post',
+              dataType:'json',
+              success:function(result)
+              {
+              }
+            });
+           }
+          }
+          function stop(event)
+          {
+            ling=1;
+            event = event || window.event
+            event.preventDefault()
+              var data={speed:0,direction:0};
+              $.ajax({
+              url:'car_start',
+              data:data,
+              type:'post',
+              dataType:'json',
+              success:function(result)
+              {
+              }
+            });
+          }
+          c.addEventListener('touchstart',run, false);
+           c.addEventListener('touchmove',run, false);
+           c.addEventListener('touchend',stop, false);
+       }
+        function get_photo()
+        {
+            var mode=$('#cai').val();
+             if(mode='photo')
+            {
+            var NIMG=document.getElementById('img');
+            NIMG.src='http://1ue9156597.51mypc.cn:36458/?action=snapshot';
+            }
+        }
+        function car_move(i)
+        {
+           var speed=$('#speed').val();
+           var data={speed:speed,direction:i};
+           $.ajax({
+             url:'car_start',
+             data:data,
+             type:'post',
+             dataType:'json',
+             success:function(result)
+             {
+             }
+           });
+        }
+        function stop()
+        {
+             var speed=0;
+             var direction=0;
+             var data={speed:speed,direction:i};
+             $.ajax({
+             url:'car_start',
+             data:data,
+             type:'post',
+             dataType:'json',
+             success:function(result)
+             {
+             }
+           });
+        }
+      </script>
+      <style type='text/css'>
+        .css{margin-left: 40px;margin-right: 40px}
+     </style>
+  </head>
+        <body>
+      <div data-role='page'>
+        <div data-role="header" style="background:#4F9D9D"  data-position="fixed" data-tap-toggle="false"  >
+    <h1 style="color:white">拍照小车</h1>
+  </div>
+        <img id='img' height='250' width='360' src='http://1ue9156597.51mypc.cn:36458/?action=snapshot' />
+      <form>
+    <label for="slider-1" >车速调节:</label>
+    <input type="range" name="speed" id="speed" min="0" max="100" value="50" data-highlight="true">
+</form>
+
+<div class='css'>
+            <select data-inline="true" name="cai" id="cai" onchange="show(this.value)">
+                 <option value="photo">拍照</option>
+                 <option value="stream">视频</option>
+            </select> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <button width='200' data-inline="true" onclick='get_photo();' id='get_photo'>&nbsp;&nbsp;拍照&nbsp;&nbsp;</button>
+</div>
+         <table cellspacing="0" cellpadding="0" style="display:inline">
+        <tr><td></td>
+            <td><button id='S'   width='5' height='5' onclick='S_X(0);'>上</button></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><button  id='L'  width='500' height='50' onclick='Z_Y(1);'>左</button></td>
+            <td></td>
+            <td><button  id='R'  width='50' height='50' onclick='Z_Y(0);' >右</button></td>
+        </tr>
+        <tr><td></td>
+            <td><button  id='X'   width='50' height='50' onclick='S_X(1);'>下</button></td>
+            <td></td>
+        </tr>
+     </table>
+     <table cellspacing="0" cellpadding="0"  style="display:inline">
+        <tr><td></td>
+            <td><button id='UP'  width='50' height='50' data-theme='b'>前进</button></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><button  id='LEFT' width='50' height='50' data-theme='b'>左转</button></td>
+            <td></td>
+            <td><button  id='RIGHT' width='50' height='50' data-theme='b'>右转</button></td>
+        </tr>
+        <tr><td></td>
+            <td><button  id='DOWN'  width='50' height='50' data-theme='b'>后退</button>
+            <td></td>
+        </tr>
+    </table>
+  </div>
+</body>
+</html>
